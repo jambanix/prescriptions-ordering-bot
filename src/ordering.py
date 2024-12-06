@@ -9,14 +9,14 @@ ORDER = "https://www.patient-services.co.uk/prescriptions/order"
 
 def login(session: Session, username: str, password: str) -> bool:
     logging.info("Requesting home page")
-    response = session.get(HOME, verify=False)
+    response = session.get(HOME, verify="www-patient-services-co-uk-chain.pem")
     if not response.ok:
         logging.error("Could not access home page")
         logging.error(response.text)
         return False
 
     logging.info("Logging in")
-    response = session.post(LOGIN, data={"username": username, "password": password}, verify=False)
+    response = session.post(LOGIN, data={"username": username, "password": password}, verify="www-patient-services-co-uk-chain.pem")
     if not response.ok:
         logging.error("Could not log in")
         logging.error(response.text)
@@ -25,7 +25,7 @@ def login(session: Session, username: str, password: str) -> bool:
 
 def send_prescription_request(session: Session, payload: dict) -> bool:
     logging.info("Requesting prescriptions")
-    response = session.post(ORDER, data=payload, verify=False)
+    response = session.post(ORDER, data=payload, verify="www-patient-services-co-uk-chain.pem")
     if response.ok:
         logging.info("Prescriptions requested")
         logging.info(response.text)
