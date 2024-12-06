@@ -52,7 +52,7 @@ def order_prescriptions(username: str, password: str, due_prescriptions: list, a
         "requestSummaryJson":dumps({
             "repeatIds": [],
             "message": "",
-            "additionalRequest": "\r\n".join([prescription["name"] for prescription in due_prescriptions])}),
+            "additionalRequest": "\r\n".join([f'{prescription["name"]} {prescription["dose"]}' for prescription in due_prescriptions])}),
         "selectedRepeatsJson": dumps([])
         }
     
