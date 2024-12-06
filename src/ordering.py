@@ -6,7 +6,6 @@ from json import dumps
 HOME = "https://www.patient-services.co.uk/"
 LOGIN = "https://www.patient-services.co.uk/login"
 ORDER = "https://www.patient-services.co.uk/prescriptions/order"
-# ORDER = "https://www.patient-services.co.uk/prescriptions/confirm-order"
 
 def login(session: Session, username: str, password: str) -> bool:
     logging.info("Requesting home page")
