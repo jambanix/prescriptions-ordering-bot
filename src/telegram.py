@@ -1,11 +1,17 @@
 
-from requests import post
 import logging
+from requests import post
+from os import getenv
 
-def send_message(api_key, chat_id, message):
-    URL = f"https://api.telegram.org/bot{api_key}/sendMessage"
+def send_message(message: str):
+    """
+    Send message using Telegram to notify of an event. Details taken from environment variables
+
+    :param message: message to send
+    """
+    URL = f"https://api.telegram.org/bot{getenv("TELEGRAM_API_KEY")}/sendMessage"
     data = {
-        "chat_id": chat_id,
+        "chat_id": getenv("TELEGRAM_ID"),
         "text": message
     }
     try:
