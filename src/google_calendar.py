@@ -31,7 +31,7 @@ def create_event(prescriptions_ordered, start_from=None, working_days=2):
     """
     try:
       calendar = GoogleCalendar(credentials_path="data/token.pickle")
-      body = f"Collect: {",".join([prescription["name"] for prescription in prescriptions_ordered])}"
+      body = f"Collect: {','.join([prescription["name"] for prescription in prescriptions_ordered])}"
       if not start_from:
           start_from = datetime.today().date()
       else:
