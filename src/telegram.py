@@ -9,7 +9,7 @@ def send_message(message: str):
 
     :param message: message to send
     """
-    URL = f"https://api.telegram.org/bot{getenv("TELEGRAM_API_KEY")}/sendMessage"
+    URL = f"https://api.telegram.org/bot{getenv('TELEGRAM_API_KEY')}/sendMessage"
     data = {
         "chat_id": getenv("TELEGRAM_ID"),
         "text": message
