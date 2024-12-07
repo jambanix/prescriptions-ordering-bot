@@ -1,6 +1,7 @@
 from unittest import TestCase, main
 from src import bot
 from datetime import datetime
+from src import google_calendar
 
 # tests on 06-dec-2024
 class TestCheckIfDue(TestCase):
@@ -19,4 +20,12 @@ class TestCalculateDueDate(TestCase):
     self.assertEqual(bot.__calculate_due_date("2024-10-27", 28), datetime(2024, 11, 24).date())
     self.assertEqual(bot.__calculate_due_date("2024-11-08", 28), datetime(2024, 12, 6).date())
 
-main(verbosity=2)
+class TestWorkingDaysCalc(TestCase):
+  def test_working_days_date(self):
+    self.assertEqual(google_calendar.__working_days_date("2024-12-07", 2), datetime(2024, 12, 10).date())
+    self.assertEqual(google_calendar.__working_days_date("2024-12-08", 2), datetime(2024, 12, 10).date())
+    self.assertEqual(google_calendar.__working_days_date("2024-12-09"), datetime(2024, 12, 11).date())
+    self.assertEqual(google_calendar.__working_days_date("2024-12-10"), datetime(2024, 12, 12).date())
+    self.assertEqual(google_calendar.__working_days_date("2024-12-11"), datetime(2024, 12, 13).date())
+    self.assertEqual(google_calendar.__working_days_date("2024-12-12"), datetime(2024, 12, 16).date())
+    self.assertEqual(google_calendar.__working_days_date("2024-12-13"), datetime(2024, 12, 17).date())

@@ -2,6 +2,7 @@ import logging
 from dotenv import load_dotenv
 from src.bot import main
 
+
 DATA_FILE = "data/prescriptions.json"
 ENV = "data/.env"
 LOG_FILE = "log/bot.log"

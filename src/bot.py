@@ -3,6 +3,7 @@ from json import load, dump
 from datetime import datetime, timedelta
 from .telegram import send_message
 from .ordering import order_prescriptions
+from .google_calendar import create_event
 
 def __calculate_due_date(last_ordered: str, frequency: int):
     """
@@ -114,7 +115,12 @@ def main(data_file: str):
     exit(1)
   __update_file(ordered)
   send_message("Prescriptions ordered successfully: " + "\n- ".join([prescription["name"] for prescription in ordered]))
-  logging.info("Bot completed successfully")
+  if create_event(ordered):
+    logging.info("Created Gmail calendar event successfully")
+  else:
+    logging.error("Failed to create Gmail calendar event")
+    send_message("ERROR: failed to create Gmail calendar event")
+  logging.info("Bot finished")
   exit(0)
   
   
