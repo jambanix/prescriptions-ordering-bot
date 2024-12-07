@@ -1,11 +1,12 @@
 import logging
 from dotenv import load_dotenv
 from src.bot import main
+from os import path
 
-
-DATA_FILE = "data/prescriptions.json"
-ENV = "data/.env"
-LOG_FILE = "log/bot.log"
+DIRECTORY = path.dirname(path.abspath(__file__))
+DATA_FILE = f"{DIRECTORY}/data/prescriptions.json"
+ENV = f"{DIRECTORY}/data/.env"
+LOG_FILE = f"{DIRECTORY}/log/bot.log"
 
 logging.basicConfig(
     level=logging.INFO,
